@@ -9,9 +9,17 @@ import { TextComponent } from './text.component';
   imports: [TextStaticComponent, TextComponent],
   template: `
     <static-text></static-text>
-    <static-text type="error"></static-text>
-    <static-text type="warning"></static-text>
-    <text [font]="15" color="blue">This is a blue text</text>
+    <static-text class="danger"></static-text>
+    <static-text class="warning"></static-text>
+    <text>This is a blue text</text>
   `,
+  styles: [
+    `
+      text {
+        --text-color: blue;
+        --text-font-size: 15px;
+      }
+    `,
+  ],
 })
 export class PageComponent {}
