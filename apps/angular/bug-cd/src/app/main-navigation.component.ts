@@ -13,7 +13,7 @@ interface MenuItem {
   standalone: true,
   imports: [RouterLink, RouterLinkActive, NgFor],
   template: `
-    <ng-container *ngFor="let menu of menus">
+    <ng-container *ngFor="let menu of menus; trackBy: trackByFn">
       <a
         class="rounded-md border px-4 py-2"
         [routerLink]="menu.path"
@@ -35,6 +35,10 @@ interface MenuItem {
 })
 export class NavigationComponent {
   @Input() menus!: MenuItem[];
+
+  trackByFn(index: number, item: MenuItem) {
+    return item.path;
+  }
 }
 
 @Component({
@@ -46,7 +50,6 @@ export class NavigationComponent {
         <app-nav [menus]="getMenu(info)" />
       </ng-container>
     </ng-container>
-
     <ng-template #noInfo>
       <app-nav [menus]="getMenu('')" />
     </ng-template>
