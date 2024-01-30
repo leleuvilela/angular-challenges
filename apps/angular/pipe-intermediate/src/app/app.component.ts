@@ -1,19 +1,25 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { FuncWrapPipe } from './func-wrap.pipe';
+
+export interface Person {
+  name: string;
+  age: number;
+}
 
 @Component({
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, FuncWrapPipe],
   selector: 'app-root',
   template: `
     <div *ngFor="let person of persons; let index = index; let isFirst = first">
-      {{ showName(person.name, index) }}
-      {{ isAllowed(person.age, isFirst) }}
+      {{ showName | funcWrap: person.name : index }}
+      {{ isAllowed | funcWrap: person.age : isFirst }}
     </div>
   `,
 })
 export class AppComponent {
-  persons = [
+  persons: Person[] = [
     { name: 'Toto', age: 10 },
     { name: 'Jack', age: 15 },
     { name: 'John', age: 30 },
