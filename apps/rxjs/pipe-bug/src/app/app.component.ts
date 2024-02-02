@@ -25,13 +25,14 @@ export class ButtonDeleteComponent {
     this.service
       .deleteOldTopics(this.topic)
       .pipe(take(1))
-      .subscribe((result) =>
-        this.message$$.next(
+      .subscribe((result) => {
+        console.log(result);
+        return this.message$$.next(
           result
             ? `All ${this.topic} have been deleted`
             : `Error: deletion of some ${this.topic} failed`,
-        ),
-      );
+        );
+      });
   }
 }
 
