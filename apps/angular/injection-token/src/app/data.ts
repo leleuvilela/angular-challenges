@@ -1,8 +1,8 @@
 import { InjectionToken } from '@angular/core';
 
-export const DEFAULT_TIMER = new InjectionToken<number>('DEFAULT_TIMER');
+export const TIMER = new InjectionToken<number>('TIMER');
 
 export const getDefaultTimerProvider = (value?: number) => ({
-  provide: DEFAULT_TIMER,
+  provide: TIMER,
   useValue: value ?? 1000,
 });
